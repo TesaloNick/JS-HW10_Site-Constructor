@@ -28,8 +28,6 @@ buttonAddText.addEventListener('click', () => {     // событие по со�
     addtextButton()
 })
 
-
-
 buttonAddLink.addEventListener('click', () => {         // создать поля для ввода ссылки
     addtextInputField('input-linktext')
 
@@ -47,20 +45,20 @@ buttonAddLink.addEventListener('click', () => {         // создать пол
     dataInput.appendChild(sendLink)
     sendLink.classList.add('link-on-site')
 })
-
+let text;               //  переменная под поле ввода текста
 let addText = () => {                               // событие по созданию добавляемого текста на сайт
     const textSite = document.createElement('p')
-    let text = dataInput.querySelector('.input-text')
+    text = dataInput.querySelector('.input-text')
     textSite.innerHTML = `${text.value}`
     site.appendChild(textSite)
     text.value = ''
 }
-
+let link;               //  переменная под поле ввода ссылки
 let addLink = () => {                               // событие по созданию добавляемой ссылки на сайт
     const linkSite = document.createElement('a')
     let linkText = dataInput.querySelector('.input-linktext')
     linkSite.innerHTML = `${linkText.value}`
-    let link = dataInput.querySelector('.input-link')
+    link = dataInput.querySelector('.input-link')
     linkSite.setAttribute('href', `${link.value}`)
     site.appendChild(linkSite)
     linkText.value = ''
@@ -71,12 +69,14 @@ dataInput.addEventListener('click', () => {         // добавление те
     const button = dataInput.querySelector('button')
     if (button.classList.contains('text-on-site')) {
         button.addEventListener('click', addText)
-        dataInput.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
+        text = dataInput.querySelector('.input-text')
+        text.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
             if (event.key === 'Enter') addText()
         })
     } else if (button.classList.contains('link-on-site')) {
         button.addEventListener('click', addLink)
-        dataInput.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
+        link = dataInput.querySelector('.input-link')
+        link.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
             if (event.key === 'Enter') addLink()
         })
     }
