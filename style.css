@@ -3,7 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+body{
+    background-color: wheat;
+}
 .container{
     max-width: 1200px;
     margin: auto;
@@ -11,29 +13,32 @@
     grid-template-columns: 2fr 5fr;
     height: 100vh;
 }
-.sidebar, .tools, .data-input, .site{
+.sidebar, .site{
     border: 2px solid black;
     border-radius: 5px;
 }
 .sidebar{
-    display: grid;
-    grid-template-rows: 1fr 4fr; 
+    /* display: grid; */
+    /* grid-template-rows: 1fr 4fr;  */
+
 }
 .tools{
     display: grid;
     grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     align-items: center;
+    height: 100px;
 }
 button{
     height: 30px;
-    border: 2px black solid;
+    border: 2px white solid;
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
 }
 .tools > button{
-    width: 80%;
+    width: 90%;
 }
 .data-input{
     padding: 10px;
@@ -43,7 +48,7 @@ button{
     width: 90%;
     height: 30px;
     padding: 0 10px;
-    border: 2px black solid;
+    border: 2px white solid;
     border-radius: 5px;
 }
 .data-input button{
