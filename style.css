@@ -38,6 +38,20 @@ button{
 .data-input{
     padding: 10px;
 }
+.data-input input{
+    margin: 10px 0;
+    width: 90%;
+    height: 30px;
+    padding: 0 10px;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+.data-input button{
+    width: 50%;
+}
 .site{
     padding: 20px;
+}
+.site a{
+    display: block;
 }

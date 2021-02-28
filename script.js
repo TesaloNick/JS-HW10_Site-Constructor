@@ -12,10 +12,6 @@ let addtextInputField = (classInput) => {                     // создать 
 
     const textInputField = document.createElement('input')
     dataInput.appendChild(textInputField)
-    textInputField.style.margin = '10px 0'
-    textInputField.style.width = '90%'
-    textInputField.style.height = '30px'
-    textInputField.style.padding = '0 10px'
     textInputField.setAttribute('type', 'text')
     textInputField.classList.add(`${classInput}`)
 }
@@ -24,10 +20,6 @@ let addtextButton = () => {                         // создание кноп
     const sendText = document.createElement('button')
     sendText.innerHTML = 'Текст на сайт'
     dataInput.appendChild(sendText)
-    sendText.style.width = '50%'
-    sendText.style.height = '30px'
-    // sendText.setAttribute('type', 'submit')
-    // sendText.setAttribute('value', 'Текст на сайт')
     sendText.classList.add('text-on-site')
 }
 
@@ -36,28 +28,9 @@ buttonAddText.addEventListener('click', () => {     // событие по со�
     addtextButton()
 })
 
-let addText = () => {                               // событие по созданию добавляемого текста на сайт
-        const textInput = document.createElement('p')
-        let input = dataInput.querySelector('.input-text')
-        textInput.innerHTML = `${input.value}`
-        site.appendChild(textInput)
-        input.value = ''
-}
 
-dataInput.addEventListener('click', () => {         // добавление текста по нажатию на кнопку
-    // let item = event.target;
-    // console.log(item);
-    const button = dataInput.querySelector('.text-on-site')
-    button.addEventListener('click', addText)
-})
 
-dataInput.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
-    if (event.key === 'Enter') addText()
-})
-
-buttonAddLink.addEventListener('click', () => {         // // создать поля для ввода ссылки
-    dataInput.innerHTML = ''
-
+buttonAddLink.addEventListener('click', () => {         // создать поля для ввода ссылки
     addtextInputField('input-linktext')
 
     const linkIndication = document.createElement('p')
@@ -66,37 +39,45 @@ buttonAddLink.addEventListener('click', () => {         // // создать п�
 
     const linkInputField = document.createElement('input')
     dataInput.appendChild(linkInputField)
-    linkInputField.style.margin = '10px 0'
-    linkInputField.style.width = '90%'
-    linkInputField.style.height = '30px'
-    linkInputField.style.padding = '0 10px'
     linkInputField.setAttribute('type', 'text')
     linkInputField.classList.add('input-link')
 
     const sendLink = document.createElement('button')
     sendLink.innerHTML = 'Ссылку на сайт'
     dataInput.appendChild(sendLink)
-    sendLink.style.width = '50%'
-    sendLink.style.height = '30px'
-    // sendLink.setAttribute('type', 'submit')
-    // sendLink.setAttribute('value', 'Сcылку на сайт')
     sendLink.classList.add('link-on-site')
 })
 
-let addLink = () => {                               // событие по созданию добавляемого текста на сайт
-    const linkInput = document.createElement('a')
-    let inputLinkText = dataInput.querySelector('.input-linktext')
-    linkInput.innerHTML = `${inputLinkText.value}`
-    let linkText = dataInput.querySelector('.input-link')
-    linkInput.setAttribute('href', `${linkText.value}`)
-    site.appendChild(linkInput)
-    inputLinkText.value = ''
-    linkText.value = ''
+let addText = () => {                               // событие по созданию добавляемого текста на сайт
+    const textSite = document.createElement('p')
+    let text = dataInput.querySelector('.input-text')
+    textSite.innerHTML = `${text.value}`
+    site.appendChild(textSite)
+    text.value = ''
 }
 
-dataInput.addEventListener('click', () => {         // добавление текста по нажатию на кнопку
-    // let item = event.target;
-    // console.log(item);
-    const button = dataInput.querySelector('.link-on-site')
-    button.addEventListener('click', addLink)
+let addLink = () => {                               // событие по созданию добавляемой ссылки на сайт
+    const linkSite = document.createElement('a')
+    let linkText = dataInput.querySelector('.input-linktext')
+    linkSite.innerHTML = `${linkText.value}`
+    let link = dataInput.querySelector('.input-link')
+    linkSite.setAttribute('href', `${link.value}`)
+    site.appendChild(linkSite)
+    linkText.value = ''
+    link.value = ''
+}
+
+dataInput.addEventListener('click', () => {         // добавление текста или ссылки по нажатию на кнопку
+    const button = dataInput.querySelector('button')
+    if (button.classList.contains('text-on-site')) {
+        button.addEventListener('click', addText)
+        dataInput.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
+            if (event.key === 'Enter') addText()
+        })
+    } else if (button.classList.contains('link-on-site')) {
+        button.addEventListener('click', addLink)
+        dataInput.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
+            if (event.key === 'Enter') addLink()
+        })
+    }
 })
