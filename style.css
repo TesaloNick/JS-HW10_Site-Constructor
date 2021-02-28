@@ -25,13 +25,15 @@
     justify-items: center;
     align-items: center;
 }
-.tools > button{
-    width: 80%;
+button{
     height: 30px;
     border: 2px black solid;
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
+}
+.tools > button{
+    width: 80%;
 }
 .data-input{
     padding: 10px;
