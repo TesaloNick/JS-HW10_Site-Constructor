@@ -116,6 +116,7 @@ let addImage = () => {
     const image = document.createElement('img')
     image.setAttribute('src', `${linkImage.value}`)
     site.appendChild(image)
+    linkImage.value = ''
 }
 
 dataInput.addEventListener('click', () => {         // добавление текста или ссылки по нажатию на кнопку

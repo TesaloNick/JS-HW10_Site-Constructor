@@ -20,7 +20,7 @@ body{
 .sidebar{
     /* display: grid; */
     /* grid-template-rows: 1fr 4fr;  */
-
+    width: 350px;
 }
 .tools{
     display: grid;
