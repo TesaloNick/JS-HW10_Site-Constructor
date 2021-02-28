@@ -4,6 +4,9 @@ const site = document.querySelector('.site')
 const buttonAddText = document.getElementById('buttonAddText')
 const buttonAddLink = document.getElementById('buttonAddLink')
 
+let textColor;
+let textSize;
+
 let addtextInputField = (classInput) => {                     // создать поле для ввода текста
     dataInput.innerHTML = ''                                    // обнуление поля
     const textIndication = document.createElement('p')
@@ -14,6 +17,25 @@ let addtextInputField = (classInput) => {                     // создать 
     dataInput.appendChild(textInputField)
     textInputField.setAttribute('type', 'text')
     textInputField.classList.add(`${classInput}`)
+
+    const colorIndication = document.createElement('p')
+    colorIndication.innerHTML = 'Выберите цвет текста'
+    dataInput.appendChild(colorIndication)
+
+    textColor = document.createElement('input')
+    dataInput.appendChild(textColor)
+    textColor.setAttribute('type', 'color')
+
+    const sizeIndication = document.createElement('p')
+    sizeIndication.innerHTML = 'Выберите размер текста'
+    dataInput.appendChild(sizeIndication)
+
+    textSize = document.createElement('input')
+    dataInput.appendChild(textSize)
+    textSize.setAttribute('type', 'range')
+    textSize.setAttribute('max', '100')
+    textSize.setAttribute('min', '10')
+    textSize.setAttribute('step', '9')
 }
 
 let addtextButton = () => {                         // создание кнопки добавления текста
@@ -38,6 +60,7 @@ buttonAddLink.addEventListener('click', () => {         // создать пол
     const linkInputField = document.createElement('input')
     dataInput.appendChild(linkInputField)
     linkInputField.setAttribute('type', 'text')
+    linkInputField.setAttribute('value', 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj4g9CPoY3vAhXFy6QKHU-6CjsQFjAAegQIAhAD&url=https%3A%2F%2Fwww.google.by%2F&usg=AOvVaw2hX-q0vIgw0b6XJKd0ZgEo')
     linkInputField.classList.add('input-link')
 
     const sendLink = document.createElement('button')
@@ -45,11 +68,15 @@ buttonAddLink.addEventListener('click', () => {         // создать пол
     dataInput.appendChild(sendLink)
     sendLink.classList.add('link-on-site')
 })
+
 let text;               //  переменная под поле ввода текста
 let addText = () => {                               // событие по созданию добавляемого текста на сайт
     const textSite = document.createElement('p')
     text = dataInput.querySelector('.input-text')
     textSite.innerHTML = `${text.value}`
+    textSite.style.color = `${textColor.value}`
+    console.log(textSize.value);
+    textSite.style.fontSize = `${textSize.value}px`
     site.appendChild(textSite)
     text.value = ''
 }
@@ -58,11 +85,13 @@ let addLink = () => {                               // событие по со�
     const linkSite = document.createElement('a')
     let linkText = dataInput.querySelector('.input-linktext')
     linkSite.innerHTML = `${linkText.value}`
+    linkSite.style.color = `${textColor.value}`
     link = dataInput.querySelector('.input-link')
     linkSite.setAttribute('href', `${link.value}`)
+    linkSite.style.fontSize = `${textSize.value}px`
     site.appendChild(linkSite)
     linkText.value = ''
-    link.value = ''
+    link.value = 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj4g9CPoY3vAhXFy6QKHU-6CjsQFjAAegQIAhAD&url=https%3A%2F%2Fwww.google.by%2F&usg=AOvVaw2hX-q0vIgw0b6XJKd0ZgEo'
 }
 
 dataInput.addEventListener('click', () => {         // добавление текста или ссылки по нажатию на кнопку
