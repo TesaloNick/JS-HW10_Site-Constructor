@@ -65,9 +65,15 @@ button{
     display: flex;
     justify-content: space-around;
 }
+.data-input form p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .data-input form p input{
-    display: inline;
-    margin: 0;
+    display: inline-block;
+    margin-left: 5px;
+    width: 15px;
 }
 .site{
     padding: 20px;

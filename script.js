@@ -110,8 +110,6 @@ let addImageField = buttonAddImg.addEventListener('click', () => {  // доба�
     percentSizeImage.appendChild(inputPercentSizeImage)
     inputPercentSizeImage.setAttribute('type', 'radio')
     inputPercentSizeImage.setAttribute('name', 'size-image')
-    inputPercentSizeImage.setAttribute('value', 'percent')
-    // inputPercentSizeImage.setAttribute('checked', 'checked')
 
     const pixelSizeImage = document.createElement('p')
     pixelSizeImage.innerHTML = 'px'
@@ -120,7 +118,6 @@ let addImageField = buttonAddImg.addEventListener('click', () => {  // доба�
     pixelSizeImage.appendChild(inputPixelSizeImage)
     inputPixelSizeImage.setAttribute('type', 'radio')
     inputPixelSizeImage.setAttribute('name', 'size-image')
-    inputPixelSizeImage.setAttribute('value', 'pixel')
 
     const screenSizeImage = document.createElement('p')
     screenSizeImage.innerHTML = 'vw'
@@ -129,13 +126,29 @@ let addImageField = buttonAddImg.addEventListener('click', () => {  // доба�
     screenSizeImage.appendChild(inputScreenSizeImage)
     inputScreenSizeImage.setAttribute('type', 'radio')
     inputScreenSizeImage.setAttribute('name', 'size-image')
-    inputScreenSizeImage.setAttribute('value', 'screen')
 
     sendImage = document.createElement('button')
     sendImage.innerHTML = 'Картинку на сайт'
     dataInput.appendChild(sendImage)
     sendImage.classList.add('image-on-site')
 })
+//________________________________________________________________________________________________________________
+let backgroundColor, sendBackground;
+let addBackgoundColorField = buttonAddBackground.addEventListener('click', () => {          // создать поле для ввода текста
+    dataInput.innerHTML = ''                                    // обнуление поля
+    const backIndication = document.createElement('p')
+    backIndication.innerHTML = 'Выберите цвет фона сайта:'
+    dataInput.appendChild(backIndication)
+
+    backgroundColor = document.createElement('input')
+    dataInput.appendChild(backgroundColor)
+    backgroundColor.setAttribute('type', 'color')
+
+    sendBackground = document.createElement('button')
+    sendBackground.innerHTML = 'Изменить цвет фона'
+    dataInput.appendChild(sendBackground)
+    sendBackground.classList.add('background-on-site')
+}) 
 //________________________________________________________________________________________________________________
 let text;               //  переменная под поле ввода текста
 let addText = () => {                               // событие по созданию добавляемого текста на сайт
@@ -160,11 +173,9 @@ let addLink = () => {                               // событие по со�
     linkText.value = ''
     link.value = 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj4g9CPoY3vAhXFy6QKHU-6CjsQFjAAegQIAhAD&url=https%3A%2F%2Fwww.google.by%2F&usg=AOvVaw2hX-q0vIgw0b6XJKd0ZgEo'
 }
-let addImage = (event) => {
-    // let item = event.target
+let addImage = () => {
     const image = document.createElement('img')
     image.setAttribute('src', `${linkImage.value}`)
-    // image.style.width = `${sizeImage.value}%`
     let arrayInputRadio = document.getElementsByName('size-image')
     for (let i=0; i < arrayInputRadio.length; i++) {
         if (arrayInputRadio[i].checked) {
@@ -181,10 +192,12 @@ let addImage = (event) => {
             }
         }
     }
-    // const imageSizeChoice = inputPercentSizeImage.hasAttribute('checked')
     site.appendChild(image)
     linkImage.value = ''
     sizeImage.value = '50'
+}
+let addBackground = () => {                               // событие по созданию добавляемой ссылки на сайт
+    site.style.backgroundColor = `${backgroundColor.value}`
 }
 //________________________________________________________________________________________________________________
 dataInput.addEventListener('click', () => {         // добавление текста или ссылки по нажатию на кнопку
@@ -206,9 +219,15 @@ dataInput.addEventListener('click', () => {         // добавление те
         linkImage.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
             if (event.key === 'Enter') addImage()
         })
+    } else if (button.classList.contains('background-on-site')) {
+        sendBackground.addEventListener('click', addBackground)
+        // linkImage.addEventListener('keydown', (event) => {     // добавление текста по нажатию на клавиатуре 'Enter'
+        //     if (event.key === 'Enter') addBackground()
+        // })
     } 
 })
 //________________________________________________________________________________________________________________
-buttonClearSite.addEventListener('click', () => {
+buttonClearSite.addEventListener('click', () => {       // очистка сайта
     site.innerHTML = ''
+    site.style.backgroundColor = 'wheat'
 })
