@@ -24,11 +24,13 @@ body{
 }
 .tools{
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, 1fr);
+    /* grid-gap: 5px; */
     justify-items: center;
     align-items: center;
-    height: 100px;
+    height: 120px;
+    border-bottom: 2px black solid;
 }
 button{
     height: 30px;
@@ -36,6 +38,11 @@ button{
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
+}
+#buttonClearSite{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 95%;
 }
 .tools > button{
     width: 90%;
@@ -53,6 +60,14 @@ button{
 }
 .data-input button{
     width: 50%;
+}
+.data-input form{
+    display: flex;
+    justify-content: space-around;
+}
+.data-input form p input{
+    display: inline;
+    margin: 0;
 }
 .site{
     padding: 20px;
